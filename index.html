@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akil Krishnan | Data Scientist</title>
+
+<style>
+:root {
+  --accent: gold; 
+  --accent-secondary: brown;
+}
+
+
+/* ===== Reset & Base Styles ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body { background:#0f172a; color:#e5e7eb; line-height:1.6; scroll-behavior:smooth; }
+a { text-decoration:none; }
+ul { list-style:none; padding-left:0; }
+
+/* ===== Navigation ===== */
+/* ===== NAVBAR ===== */
+/* NAVBAR */
+.navbar {
+  position: fixed;        /* 🔑 FIX */
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  z-index: 1000;
+  background: #020617;
+  backdrop-filter: blur(10px);
+  background: rgba(2,6,23,0.85);
+  height: 64px;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  color: #FFA800;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Hamburger */
+.menu-toggle {
+  font-size: 1.8rem;
+  color: gold;
+  cursor: pointer;
+}
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  position: absolute;
+  top: 64px;
+  right: 16px;
+  width: 220px;
+
+  background: #020617;
+  border-radius: 14px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  opacity: 0;
+  transform: translateY(-12px) scale(0.95);
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dropdown-menu a {
+  color: chocolate;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.dropdown-menu a:hover {
+  color: gold;
+  transform: translateX(6px);
+}
+
+/* SHOW MENU */
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  /* CENTER NAV LINKS */
+  .dropdown-menu {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+
+    opacity: 1;
+    pointer-events: auto;
+    background: none;
+    padding: 0;
+  }
+
+  .dropdown-menu a {
+    font-size: 1rem;
+  }
+}
+.dropdown-menu.show a {
+  opacity: 0;
+  animation: navItemFade 0.6s ease forwards;
+}
+
+.dropdown-menu.show a:nth-child(1) { animation-delay: 0.1s; }
+.dropdown-menu.show a:nth-child(2) { animation-delay: 0.25s; }
+.dropdown-menu.show a:nth-child(3) { animation-delay: 0.4s; }
+.dropdown-menu.show a:nth-child(4) { animation-delay: 0.55s; }
+.dropdown-menu.show a:nth-child(5) { animation-delay: 0.7s; }
+.dropdown-menu.show a:nth-child(6) { animation-delay: 0.85s; }
+
+@keyframes navItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
+/* ===== Hero Section ===== */
+.hero {
+  min-height: 60vh;
+  margin-top: 64px;
+  background: linear-gradient(135deg,#020617,#0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  gap: 40px;
+}
+.hero-left {
+  max-width: 600px;
+}
+.hero-name {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+.hero-role {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 15px;
+}
+.hero-desc {
+  max-width: 520px;
+  font-size: 1.05rem;
+  color: #cbd5f5;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.name-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 20px;
+}
+.name-skills span {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background: rgba(56,189,248,0.12);
+  color:var(--accent);;
+  border: 1px solid rgba(56,189,248,0.45);
+}
+.hero-buttons { display:flex; gap:15px; flex-wrap:wrap; margin-top:10px; }
+/* ===== HERO BUTTONS – SMOOTH LIKE SKILLS ===== */
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(
+    90deg,
+    var(--accent-secondary),
+    var(--accent)
+  );
+  color: #020617;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: transparent;
+  border: 2px solid chocolate;
+  color: var(--accent);
+}
+
+
+/* Click */
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(-2px) scale(0.98);
+}
+
+/* Hero Image */
+.hero-right { flex-shrink:0; }
+.hero-img {
+  width:340px;
+  height:340px;
+  object-fit:cover;
+  border-radius:20px;
+  border:4px solid saddlebrown;
+  box-shadow:0 20px 45px rgba(56,189,248,0.4);
+  transition: transform 0.3s ease;
+}
+.hero-img:hover { transform: scale(1.05); }
+
+/* ===== Main Sections ===== */
+main { max-width:1200px; margin:auto; padding:50px 20px; }
+
+/* Section Titles */
+.section-title {
+  font-size:2rem;
+  margin-bottom:20px;
+  color:var(--accent);
+  border-left:4px solid var(--accent);
+  padding-left:10px;
+}
+
+/* About & Skills */
+.about-section { display:flex; flex-direction:column; gap:40px; margin-bottom:60px; }
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; margin-top:20px; }
+.skill-box {
+  padding:12px 10px;
+  text-align:center;
+  font-size:0.95rem;
+  font-weight:500;
+  background:#020617;
+  color:white;
+  border:1px solid chocolate;
+  border-radius:10px;
+  transition: all 0.3s ease;
+}
+
+.card {
+  background:#020617;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 25px 45px rgba(56,189,248,0.35);
+}
+/* ===== Projects Section ===== */
+/* Projects Grid: 2 per row on desktop, 1 per row on mobile */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 projects per row */
+  gap: 30px; /* spacing between cards */
+  margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* 1 project per row on mobile */
+  }
+}
+
+/* Project Card */
+.project-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: #020617;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover effect */
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px rgba(56,189,248,0.25);
+}
+
+/* Image on top */
+.project-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-bottom: 2px solid white;
+}
+
+/* Project Details */
+.project-details {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-details h3 {
+  color: brown;
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+.project-points li {
+  font-size: 0.95rem;
+  color: #cbd5f5;
+  margin-bottom: 6px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.project-points li::before {
+  content: "➤";
+  position: absolute;
+  left: 0;
+  color: saddlebrown;
+  font-weight: bold;
+}
+
+.project-details a {
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.project-details a:hover {
+  text-decoration: underline;
+}
+
+
+/* Auto Typing Skills */
+.typing-container {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 12px 0 20px;
+  color: #cbd5f5;
+}
+
+/* Gradient auto-typing text */
+/* Gradient + Glow typing text */
+.typing-text {
+  position: relative;              /* 🔑 REQUIRED */
+  display: inline-block;           /* 🔑 REQUIRED */
+
+  background: linear-gradient(90deg, #6366f1, #38bdf8, #0ea5e9);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: 700;
+  white-space: nowrap;
+  padding-right: 8px;
+
+  filter: drop-shadow(0 0 6px rgba(56,189,248,0.6))
+          drop-shadow(0 0 12px rgba(99,102,241,0.4));
+
+  animation: gradientMove 3s linear infinite;
+}
+
+
+
+/* Gradient animation */
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Smooth blinking cursor */
+.cursor {
+  display: inline-block;
+  margin-left: 3px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ===== EDUCATION & COURSES LAYOUT ===== */
+.education-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* Course list */
+.course-list {
+  margin-top: 10px;
+  padding-left: 18px;
+}
+
+.course-list li {
+  margin-bottom: 8px;
+  color: #cbd5f5;
+  position: relative;
+}
+
+.course-list li::before {
+  content: "✔";
+  position: absolute;
+  left: -18px;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .education-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.education-desc {
+  color: #cbd5f5;
+  line-height: 1.7;
+}
+
+/* FAST hover for Education & Courses cards */
+#education .card {
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+  will-change: transform;
+}
+
+#education .card:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 26px 50px rgba(56,189,248,0.45);
+}
+
+/* ================= GLOBAL HOVER EFFECTS ================= */
+
+/* Smooth transition for everything */
+
+
+/* PROJECT IMAGE zoom */
+.project-card:hover .project-img {
+  transform: scale(1.08);
+}
+
+/* SKILL BOX hover (already present, enhanced) */
+.skill-box:hover {
+  background: linear-gradient(90deg,var(--accent), var(--accent-secondary));
+  color: #020617;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+}
+
+
+/* NAV links hover underline glow */
+nav a {
+  position: relative;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -6px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+nav a:hover::after {
+  width: 100%;
+}
+
+/* LINKS hover glow */
+
+/* HERO IMAGE hover (already exists, enhanced) */
+.hero-img:hover {
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 30px 60px rgba(56,189,248,0.6);
+}
+
+/* ================= SECTION HOVER EFFECTS ================= */
+
+/* ABOUT ME hover */
+#about .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(56,189,248,0.35);
+  border: 1px solid rgba(56,189,248,0.4);
+}
+
+
+/* PROJECT IMAGE zoom on hover */
+.project-card:hover .project-img {
+  transform: scale(1.08);
+}
+
+/* CONTACT hover */
+#contact .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(56,189,248,0.35);
+  border: 1px solid rgba(56,189,248,0.4);
+}
+
+/* About & Contact cards */
+#about .card,
+#contact .card {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+#about .card:hover,
+#contact .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 40px rgba(56,189,248,0.35);
+}
+
+/* ================= FAST PROJECT HOVER OVERRIDE ================= */
+
+/* Project card – instant response */
+.project-card {
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out !important;
+  will-change: transform;
+}
+
+/* Card hover */
+.project-card:hover {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 26px 50px rgba(56,189,248,0.45);
+}
+
+/* Project image – faster zoom */
+.project-img {
+  transition: transform 0.12s ease-out !important;
+}
+
+
+/* Allow hover to pass correctly */
+.project-details {
+  pointer-events: auto;
+}
+
+/* Trigger hover when details are hovered */
+.project-details:hover {
+  cursor: pointer;
+}
+
+/* Force hover effect even when hovering details */
+.project-card:hover,
+.project-card:has(.project-details:hover) {
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 26px 50px rgba(56,189,248,0.45);
+}
+
+/* Image zoom works everywhere */
+.project-card:hover .project-img,
+.project-card:has(.project-details:hover) .project-img {
+  transform: scale(1.06);
+}
+ 
+  
+/* Fade-up animation */
+.fade-up { opacity:0; transform:translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-up.show { opacity:1; transform:translateY(0); }
+
+
+/* ===== Contact & Footer ===== */
+
+footer { background:#020617; text-align:center; padding:20px; font-size:0.9rem; color:#94a3b8; margin-top:50px; }
+
+/* ===== Responsive ===== */
+@media(max-width:900px) {
+  .hero { flex-direction: column-reverse; text-align:center; padding:40px 20px; }
+  .hero-left h1 { font-size:2.4rem; }
+  .hero-img { width:220px; height:220px; }
+  .name-skills { justify-content:center; }
+  .skills-grid { grid-template-columns:1fr; }
+}
+
+/* ================= CONTACT SECTION ================= */
+
+.contact-section {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+  
+
+
+.contact-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: gold;
+  font-size: 1.6rem;
+}
+
+/* Inputs */
+
+.contact-card textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* Focus */
+.contact-card input:focus,
+.contact-card textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.25);
+}
+
+/* Button */
+
+/* ================= CONTACT INFO (DARK THEME MATCH) ================= */
+
+.contact-info-section {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.contact-info-card {
+  width: 100%;
+  max-width: 520px;
+  background: #020617; /* same as cards */
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 55px rgba(56,189,248,0.35);
+}
+
+.contact-info-card h2 {
+  margin-bottom: 25px;
+  font-size: 1.6rem;
+  color: var(--accent);
+  border-left: 4px solid var(--accent);
+  padding-left: 10px;
+}
+
+/* Individual contact row */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid chocolate;
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  min-width: 0;
+  flex: 1; 
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(56,189,248,0.35);
+}
+
+/* Icon box */
+.contact-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+/* Icon gradients */
+.contact-icon.email {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+}
+
+.contact-icon.linkedin {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.contact-icon.github {
+  background: linear-gradient(135deg, #111827, #374151);
+}
+
+.contact-icon.whatsapp {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+/* Text */
+.contact-text span {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 2px;
+}
+
+.contact-text a {
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.contact-text a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* CONTACT SIDE-BY-SIDE LAYOUT */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: stretch;
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* SEND MESSAGE – same animation & hover as contact info */
+.contact-card {
+  background: #020617;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+/* Hover lift */
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(56,189,248,0.25);
+}
+
+/* Inputs */
+.contact-card input,
+.contact-card textarea {
+  width: 100%;
+  background: #020617;
+  border: 1px solid chocolate;
+  color: gold;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus animation */
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(56,189,248,0.45);
+}
+
+/* Button */
+.contact-card button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-secondary),
+    var(--accent)
+  );
+  border: none;
+  color: #020617;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Button hover */
+.contact-card button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+/* CONTACT GRID */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+  .contact-card input,
+  .contact-card textarea {
+    font-size: 0.9rem;
+  }
+
+  .contact-card button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Allow contact text to wrap properly on mobile */
+.contact-item > div:last-child {
+  min-width: 0;                /* 🔑 MOST IMPORTANT */
+  overflow-wrap: anywhere;
+}
+
+/* Break long email & links */
+.contact-item a {
+  word-break: break-word;
+}
+
+@media (max-width: 600px) {
+  .contact-item {
+    width: 100%;
+  }
+
+  .contact-item a {
+    font-size: 0.85rem;
+  }
+
+  .contact-item span {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .contact-info-card,
+  .contact-card {
+    max-width: 100%;
+    padding: 20px 14px;
+  }
+
+  .contact-wrapper {
+    padding: 40px 12px;
+  }
+}
+
+/* ===== FINAL HERO BUTTON HOVER FIX ===== */
+.hero-buttons a {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.35s ease !important;
+}
+.hero-buttons a:hover {
+  transform: translateY(-8px) scale(1.08) !important;
+  box-shadow: 0 18px 40px rgba(56,189,248,0.5) !important;
+  filter: brightness(1.15);
+}
+
+/* 🚀 FORCE FAST hover for Education & Courses cards */
+#education .card {
+  transition: transform 0.08s ease-out, box-shadow 0.08s ease-out !important;
+}
+
+#education .card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 28px 55px rgba(56,189,248,0.45);
+}
+
+/* Mobile navbar fix */
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
+.emoji-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  filter: invert(1); /* white on dark background */
+}
+
+  
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar fade-up">
+  <div class="nav-brand">MENU</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#home" onclick="closeMenu()">HOME</a>
+    <a href="#about" onclick="closeMenu()">ABOUT</a>
+    <a href="#education" onclick="closeMenu()">EDUCATION</a>
+    <a href="#skills" onclick="closeMenu()">SKILLS</a>
+    <a href="#projects" onclick="closeMenu()">PROJECTS</a>
+    <a href="#contact" onclick="closeMenu()">CONTACT</a>
+  </div>
+</nav>
+
+
+<!-- Hero -->
+<header id="home" class="hero fade-up">
+  <div class="hero-left fade-up">
+    <h1 class="hero-name fade-up">Akil Krishnan</h1>
+
+<div class="typing-container fade-up">
+  <span class="static-text">Data Scientist | </span>
+  <span class="typing-text"></span><span class="cursor">|</span>
+
+</div>
+
+    <p class="hero-desc fade-up">Data Science professional specializing in transforming complex data into actionable insights using Machine Learning, analytics, and visualization.</p>
+    <div class="hero-buttons fade-up">
+      <a href="#projects" class="btn-primary fade-up">View My Work</a>
+      <a href="#contact" class="btn-secondary fade-up">Let’s Connect</a>
+    </div>
+  </div>
+  <div class="hero-right fade-up">
+    <img src="profile2.png" alt="Akil Krishnan" class="hero-img ">
+  </div>
+</header>
+
+<main>
+  <!-- About & Skills -->
+  <section id="about" class="about-section fade-up">
+    <div class="card fade-up">
+      <div class="section-title">About Me</div>
+      <p class="fade-up">I am a passionate Data Scientist and Python Programmer with strong expertise in data analysis, machine learning, and application development. I have hands-on experience with a strong foundation in statistics, machine learning algorithms, and database management, combined with practical problem-solving skills and I have hands-on designing end-to-end solutions—from building GUI-based applications using Python and Tkinter to developing data-driven models and interactive dashboards for actionable insights.</p>
+      <p class="fade-up">I have developed database-driven systems using Python and MySQL. and I am proficient in working with structured and unstructured data. My experience includes implementing regression, classification, and clustering models using Scikit-learn, as well as deploying user-friendly data science applications. I am also skilled in Power BI for data visualization and storytelling, creating insightful dashboards that highlight trends and support data-driven decision-making.</p>
+    </div>
+
+   <!-- Education & Courses -->
+<div id="education" class="education-wrapper fade-up">
+
+  <!-- LEFT: Education -->
+  <div class="card fade-up">
+    <div class="section-title">Education</div>
+
+    <p class="fade-up">
+      <strong>B.Sc. Mathematics</strong><br>
+      Government Arts College Salem-7, Tamil Nadu<br>
+      <span style="color:#94a3b8;">2022 – 2025</span>
+    </p>
+
+    <p class="education-desc fade-up" style="margin-top:10px;">
+      I am a B.Sc. Mathematics graduate from Periyar University with comprehensive academic training in core mathematical disciplines.
+      I have studied Classical Algebra and Trigonometry, Differential Calculus, and Analytical Solid Geometry, building a strong mathematical foundation.
+      I have studied Differential Equations and Dynamics, strengthening my ability to analyze motion and change mathematically.
+      My knowledge of Statics and Mathematical Statistics has enhanced my understanding of equilibrium and data-based reasoning.
+      I have gained proficiency in Integral Transforms and Fourier Series, supporting advanced analytical problem solving.
+    </p>
+  </div>
+
+  <!-- RIGHT: Courses Completed -->
+  <div class="card fade-up">
+    <div class="section-title">Course Completed</div>
+
+    <p class="fade-up">
+    Completed structured training in <strong>Data Science</strong> at
+    <strong>Imagecon Academy</strong>, focusing on extracting insights from data
+    using modern analytical and visualization tools.
+  </p>
+
+<ul class="course-list fade-up">
+  <li>Python for data analysis and machine learning</li>
+  <li>MySQL for database design and querying</li>
+  <li>Power BI for interactive data visualization</li>
+  <li>R Programming for statistical modeling</li>
+  <li>Big Data fundamentals and MongoDB</li>
+</ul>
+  </div>
+
+</div>
+    <div id="skills" class="skills-wrapper fade-up">
+      <div class="section-title fade-up">Skills</div>
+      <div class="skills-grid fade-up">
+        <div class="skill-box ">Data Science</div>
+        <div class="skill-box ">Python</div>
+        <div class="skill-box ">MySQL</div>
+        <div class="skill-box ">Power BI</div>
+        <div class="skill-box ">R Programming</div>
+        <div class="skill-box ">Big Data</div>
+        <div class="skill-box ">Data Analysis</div>
+        <div class="skill-box ">MongoDB</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="fade-up" style="margin-top:60px;">
+  <div class="section-title">Projects</div>
+  
+  <div class="projects-grid fade-up">
+    <!-- Project 1 -->
+    <div class="project-card fade-up">
+      <img src="tkinter_ml.webp" alt="Tkinter ML Project" class="project-img ">
+      <div class="project-details fade-up">
+        <h3>Data Science Model Deployment with Tkinter</h3>
+        <ul class="project-points fade-up">
+          <li>Technologies used: Python, Tkinter, Pandas, NumPy, Scikit-learn, Matplotlib,Seaborn. </li>
+          <li>Designed and developed a GUI-based data science application enabling users to upload datasets (CSV/Excel) and perform Regression,Classification, and clustering tasks.</li>
+          <li>Implemented multiple ML algorithms including Linear/Polynomial Regression, Logistic Regression, Decision Tree, Random Forest, KNN,Naïve Bayes, SVM, K-Means,and Hierarchical Clustering. </li>
+          <li>Displayed detailed performance metrics such as Accuracy, Precision,Recall, F1-score, RMSE, and clustering scores.</li>
+        </ul>
+        <a href="https://github.com/Akilkrishnan2005/Data-Science-" target="_blank" class="fade-up">View on GitHub →</a>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card fade-up">
+      <img src="vehicle_booking.webp" alt="Vehicle Booking Project" class="project-img ">
+      <div class="project-details fade-up">
+        <h3>Vehicle Service Management System</h3>
+        <ul class="project-points fade-up">
+          <li>Developed a database-driven application to manage vehicle service bookings with a user-friendly Tkinter-based GUI.</li>
+          <li>Implemented core functionalities such as Add, View, Update, and Delete operations for customers and bookings.</li>
+          <li>Integrated MySQL for efficient data storage, retrieval, and management of service records.</li>
+          <li>Ensured smooth interaction between the frontend (Tkinter) and backend (MySQL) using Python database connectivity. </li>
+        </ul>
+        <a href="https://github.com/Akilkrishnan2005/python/tree/main/VEHICLE%20SERVICE%20MANGEMENT%20SYSTEM" target="_blank" class="fade-up">View on GitHub →</a>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card fade-up">
+      <img src="powerbi_netflix.png " alt="Power BI Netflix Project" class="project-img ">
+      <div class="project-details fade-up">
+        <h3>Power BI – Netflix OTT Analytics</h3>
+        <ul class="project-points fade-up">
+          <li>Created a Power BI dashboard on the Netflix dataset to analyze movies and TV shows by genre, rating, and release year. Performed data cleaning and data modeling using Power Query. </li>
+          <li>Developed interactive KPIs and visuals to highlight content trends and audience preferences. The project demonstrates strong analytical and visualization skills.</li>
+        </ul>
+        <a href="https://github.com/Akilkrishnan2005/powerbi-netflix-analytics" target="_blank" class="fade-up">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+ <!-- Contact -->
+<section id="contact" class="contact-wrapper">
+
+  <!-- LEFT: Contact Info -->
+  <div class="contact-info-card fade-up">
+    <h2>Contact Information</h2>
+
+    <div class="contact-item fade-up">
+      <div class="contact-icon email">✉️</div>
+      <div class="contact-text">
+        <span>Email</span>
+        <a href="mailto:akilkrishnanakilkrishnan88@gmail.com">
+          akilkrishnanakilkrishnan88@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-item fade-up">
+      <div class="contact-icon linkedin">in</div>
+      <div class="contact-text">
+        <span>LinkedIn</span>
+        <a href="https://www.linkedin.com/in/akil-krishnan-212168271" target="_blank">
+          linkedin.com/in/akil-krishnan-212168271
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-item fade-up">
+      <div class="contact-icon github">
+  <img src="Octicons-mark-github.svg " alt="GitHub" class="emoji-icon">
+</div>
+      <div class="contact-text">
+        <span>GitHub</span>
+        <a href="https://github.com/Akilkrishnan2005" target="_blank">
+          github.com/Akilkrishnan2005
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-item fade-up">
+      <div class="contact-icon whatsapp">📞</div>
+      <div class="contact-text">
+        <span>WhatsApp</span>
+        <a href="https://wa.me/918248702184" target="_blank">
+          +91 8248702184
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Contact Form -->
+<div class="contact-card fade-up">
+  <h2>Send a Message</h2>
+
+  <form action="https://formspree.io/f/xeeqppvd" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message ✈️</button>
+  </form>
+</div>
+
+
+</section>
+
+  
+</main>
+
+<footer>© 2026 Akil Krishnan | Data Science Portfolio</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const faders = document.querySelectorAll('.fade-up');
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      // Add show to the section itself
+      entry.target.classList.add('show');
+
+      // Add stagger effect to children with fade-up
+      const children = entry.target.querySelectorAll('.fade-up');
+      children.forEach((child, index) => {
+        // Only if child is not the same as the parent
+        if (child !== entry.target) {
+          child.style.transitionDelay = `${index * 0.15}s`;
+          child.classList.add('show');
+        }
+      });
+
+      obs.unobserve(entry.target); // animate once
+    });
+  }, { threshold: 0.25 });
+
+  faders.forEach(fader => observer.observe(fader));
+});
+</script>
+
+<script>
+const skills = [
+  "Python",
+  "Machine Learning",
+  "SQL",
+  "Power BI",
+  "Data Analysis"
+];
+
+let skillIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingText = document.querySelector(".typing-text");
+
+function typeEffect() {
+  const currentSkill = skills[skillIndex];
+
+  if (isDeleting) {
+    typingText.textContent = currentSkill.substring(0, charIndex--);
+  } else {
+    typingText.textContent = currentSkill.substring(0, charIndex++);
+  }
+
+  if (!isDeleting && charIndex === currentSkill.length) {
+    setTimeout(() => isDeleting = true, 1200);
+  } 
+  else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    skillIndex = (skillIndex + 1) % skills.length;
+  }
+
+  setTimeout(typeEffect, isDeleting ? 50 : 90);
+}
+
+typeEffect();
+</script>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('show');
+}
+</script>
+<script>
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('show');
+  });
+});
+</script>
+
+<script>
+function toggleMenu() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+function closeMenu() {
+  document.getElementById("dropdownMenu").classList.remove("show");
+}
+</script>
+
+</body>
+</html>                                                                                                                           
