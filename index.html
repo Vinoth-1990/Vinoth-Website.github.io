@@ -214,36 +214,32 @@ section:nth-child(even) { background: var(--cream-dark); }
 .skill-icon { font-size: 1.6rem; margin-bottom: 10px; }
 .skill-name { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--ink); }
 
-/* PROJECTS */
-.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.proj-card {
+/* ACHIEVEMENTS */
+.achievements-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.achieve-card {
   background: var(--white); border: 1px solid var(--border); border-radius: 2px;
-  overflow: hidden; display: flex; flex-direction: column;
+  padding: 30px; display: flex; flex-direction: column; gap: 14px;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative; overflow: hidden;
 }
-.proj-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); border-color: var(--gold-light); }
-.proj-img-wrap {
-  height: 200px; overflow: hidden; background: var(--cream-dark);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
+.achieve-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--gold);
 }
-.proj-img { width:100%; height:100%; object-fit:cover; transition: transform 0.35s; }
-.proj-card:hover .proj-img { transform: scale(1.06); }
-.proj-img-placeholder {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 8px; background: linear-gradient(135deg, #e8e0cc, #d4c89a);
+.achieve-card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(0,0,0,0.08); border-color: var(--gold-light); }
+.achieve-icon { font-size: 2rem; }
+.achieve-area { font-size: 0.68rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.achieve-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.achieve-points { display: flex; flex-direction: column; gap: 8px; }
+.achieve-points li { font-size: 0.85rem; color: var(--ink-mid); padding-left: 14px; position: relative; line-height: 1.6; }
+.achieve-points li::before { content: '›'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.achieve-result {
+  margin-top: 4px; padding: 8px 12px;
+  background: var(--gold-pale); border-left: 2px solid var(--gold);
+  font-size: 0.78rem; font-weight: 600; color: var(--gold);
+  letter-spacing: 0.3px;
 }
-.proj-img-placeholder .picon { font-size: 2.5rem; }
-.proj-img-placeholder .plabel { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
-.proj-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-.proj-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-.proj-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
-.proj-points { margin-bottom: 16px; flex: 1; }
-.proj-points li { font-size: 0.82rem; color: var(--ink-mid); padding: 5px 0 5px 14px; position: relative; }
-.proj-points li::before { content:'›'; position:absolute; left:0; color: var(--gold); font-weight: 700; }
-.proj-link { font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border-strong); padding-bottom: 2px; transition: gap 0.2s; }
-.proj-link:hover { gap: 10px; }
+@media (max-width: 768px) { .achievements-grid { grid-template-columns: 1fr; } }
 
 /* CONTACT */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
@@ -349,7 +345,7 @@ footer span { color: var(--gold-light); }
     <a href="#about">About</a>
     <a href="#education">Education</a>
     <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
+    <a href="#projects">Achievements</a>
     <a href="#contact">Contact</a>
   </div>
   <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
@@ -400,8 +396,8 @@ footer span { color: var(--gold-light); }
     <div class="stat-label">Mathematics</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">5</div>
-    <div class="stat-label">Projects Completed</div>
+    <div class="stat-num">4</div>
+    <div class="stat-label">Key Achievements</div>
   </div>
 </div>
 
@@ -501,66 +497,63 @@ footer span { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ACHIEVEMENTS -->
 <section id="projects">
   <div class="section-header reveal">
     <div class="section-num">04</div>
     <div class="section-title-wrap">
-      <div class="section-eyebrow">Portfolio</div>
-      <h2 class="section-title">Featured Projects</h2>
+      <div class="section-eyebrow">At Kwik Patch Private Limited · Unit 1</div>
+      <h2 class="section-title">Key Achievements</h2>
     </div>
   </div>
-  <div class="projects-grid">
+  <div class="achievements-grid">
 
-    <div class="proj-card reveal">
-      <div class="proj-img-wrap">
-        <div class="proj-img-placeholder"><div class="picon">🤝</div><div class="plabel">Vendor Management</div></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-tag">Procurement · Vendor Negotiation · Cost Savings</div>
-        <h3 class="proj-title">Multi-Vendor Consolidation & Renegotiation Drive</h3>
-        <ul class="proj-points">
-          <li>Audited 40+ active suppliers and identified 12 overlapping categories with redundant vendor spend</li>
-          <li>Consolidated purchasing across 3 preferred vendors per category, reducing admin overhead and securing volume discounts of 8–14%</li>
-          <li>Drafted revised vendor agreements including revised payment terms (Net-45 to Net-60) improving cash flow</li>
-          <li>Achieved ₹6.2L annual cost saving within the first procurement cycle post-consolidation</li>
-        </ul>
-        <span class="proj-link" style="cursor:default; border:none;">Outcome: 14% cost reduction · 40% fewer active vendors</span>
-      </div>
+    <div class="achieve-card reveal">
+      <div class="achieve-icon">🤝</div>
+      <div class="achieve-area">Vendor Management</div>
+      <div class="achieve-title">Built & Maintained Reliable Supplier Network</div>
+      <ul class="achieve-points">
+        <li>Onboarded and evaluated vendors across multiple product categories for Unit 1</li>
+        <li>Maintained consistent communication with suppliers to resolve quality and delivery issues promptly</li>
+        <li>Negotiated favourable pricing and payment terms to support unit-level cost targets</li>
+      </ul>
+      <div class="achieve-result">Strong vendor relationships with reduced dispute rates</div>
     </div>
 
-    <div class="proj-card reveal">
-      <div class="proj-img-wrap">
-        <div class="proj-img-placeholder"><div class="picon">📦</div><div class="plabel">Procurement Process</div></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-tag">Purchase Orders · Supplier Coordination · Lead Time</div>
-        <h3 class="proj-title">Purchase Order Tracking & Lead Time Improvement</h3>
-        <ul class="proj-points">
-          <li>Designed and maintained a structured PO tracking sheet covering 200+ monthly orders across 5 product categories</li>
-          <li>Identified recurring delays from 3 key suppliers and escalated with documented SLA breach evidence</li>
-          <li>Coordinated with logistics and warehouse teams to prioritise inbound shipments for fast-moving SKUs</li>
-          <li>Reduced average supplier lead time from 18 days to 11 days over a 6-month period</li>
-        </ul>
-        <span class="proj-link" style="cursor:default; border:none;">Outcome: 39% lead time reduction · Zero stockouts on top 50 SKUs</span>
-      </div>
+    <div class="achieve-card reveal">
+      <div class="achieve-icon">📋</div>
+      <div class="achieve-area">Procurement</div>
+      <div class="achieve-title">Streamlined Purchase Order Processing</div>
+      <ul class="achieve-points">
+        <li>Managed end-to-end PO lifecycle — raising, tracking, follow-up, and closure</li>
+        <li>Ensured all orders were processed accurately with correct quantities, pricing, and delivery timelines</li>
+        <li>Coordinated with internal teams to align procurement with production and stock requirements</li>
+      </ul>
+      <div class="achieve-result">Accurate, on-time order fulfilment with minimal discrepancies</div>
     </div>
 
-    <div class="proj-card reveal">
-      <div class="proj-img-wrap">
-        <div class="proj-img-placeholder"><div class="picon">🏷️</div><div class="plabel">Inventory & Ranging</div></div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-tag">Inventory Control · Product Ranging · Demand Planning</div>
-        <h3 class="proj-title">Seasonal Range Planning & Dead Stock Clearance</h3>
-        <ul class="proj-points">
-          <li>Analysed 6-month sales history to build a seasonal buying plan, identifying high-velocity and slow-moving SKUs</li>
-          <li>Proposed range rationalisation removing 80 underperforming SKUs, freeing 22% of warehouse shelf space</li>
-          <li>Worked with vendors to negotiate a buy-back agreement on ₹3.8L worth of unsold seasonal stock</li>
-          <li>Introduced a reorder point system tied to average daily sales, reducing over-ordering by 30%</li>
-        </ul>
-        <span class="proj-link" style="cursor:default; border:none;">Outcome: ₹3.8L stock recovered · 30% over-order reduction</span>
-      </div>
+    <div class="achieve-card reveal">
+      <div class="achieve-icon">📦</div>
+      <div class="achieve-area">Inventory Control</div>
+      <div class="achieve-title">Maintained Optimal Stock Levels at Unit 1</div>
+      <ul class="achieve-points">
+        <li>Monitored daily inventory movement and flagged low-stock items for timely replenishment</li>
+        <li>Reduced instances of overstocking by aligning purchase quantities with actual consumption patterns</li>
+        <li>Conducted regular stock reconciliations to maintain accurate inventory records</li>
+      </ul>
+      <div class="achieve-result">Consistent stock availability with reduced wastage</div>
+    </div>
+
+    <div class="achieve-card reveal">
+      <div class="achieve-icon">📉</div>
+      <div class="achieve-area">Cost & Efficiency</div>
+      <div class="achieve-title">Contributed to Cost Reduction Initiatives</div>
+      <ul class="achieve-points">
+        <li>Identified sourcing alternatives for high-cost items and presented options to management</li>
+        <li>Tracked supplier performance and escalated recurring delays to prevent production disruptions</li>
+        <li>Maintained procurement records and prepared reports for management review</li>
+      </ul>
+      <div class="achieve-result">Improved procurement efficiency and cost awareness across Unit 1</div>
     </div>
 
   </div>
