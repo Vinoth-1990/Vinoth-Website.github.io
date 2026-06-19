@@ -756,25 +756,31 @@ footer p{
 </footer>
 
 <script>
-const hero = document.querySelector('.hero');
+// Scroll reveal fix
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    }
+  });
+}, { threshold: 0.1 });
 
+reveals.forEach(el => observer.observe(el));
+
+// 3D hero effect
+const hero = document.querySelector('.hero');
 hero.addEventListener('mousemove', (e) => {
   const x = (window.innerWidth / 2 - e.pageX) / 30;
   const y = (window.innerHeight / 2 - e.pageY) / 30;
-
   document.querySelector('.hero-left').style.transform =
     `rotateY(${x}deg) rotateX(${-y}deg)`;
-
   document.querySelector('.hero-img-wrap').style.transform =
     `rotateY(${-x}deg) rotateX(${y}deg)`;
 });
-
 hero.addEventListener('mouseleave', () => {
-  document.querySelector('.hero-left').style.transform =
-    'rotateY(0deg) rotateX(0deg)';
-
-  document.querySelector('.hero-img-wrap').style.transform =
-    'rotateY(0deg) rotateX(0deg)';
+  document.querySelector('.hero-left').style.transform = 'rotateY(0deg) rotateX(0deg)';
+  document.querySelector('.hero-img-wrap').style.transform = 'rotateY(0deg) rotateX(0deg)';
 });
 </script>
 </body>
