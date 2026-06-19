@@ -465,29 +465,6 @@ footer p{
   box-shadow: 0 0 15px #d4a017;
 }
 
-.hero::after {
-  content:'';
-  position:absolute;
-  width:500px;
-  height:500px;
-  border-radius:50%;
-  background: radial-gradient(
-    rgba(212,160,23,.3),
-    transparent 70%
-  );
-  top:-100px;
-  right:-100px;
-  animation: orbMove 10s ease-in-out infinite;
-}
-<div class="hero-img-wrap">
-@keyframes orbMove {
-  0%,100% {
-    transform: translate(0,0);
-  }
-  50% {
-    transform: translate(-50px,50px);
-  }
-}
   
 </style>
 </head>
