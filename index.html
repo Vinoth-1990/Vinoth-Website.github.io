@@ -7,6 +7,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+
+.hero::after {
+  content:'';
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background: radial-gradient(
+    rgba(212,160,23,.3),
+    transparent 70%
+  );
+  top:-100px;
+  right:-100px;
+  animation: orbMove 10s ease-in-out infinite;
+}
+
+@keyframes orbMove {
+  0%,100% {
+    transform: translate(0,0);
+  }
+  50% {
+    transform: translate(-50px,50px);
+  }
+}
+  
 :root {
   --gold: #B8860B;
   --gold-light: #D4A017;
@@ -391,6 +416,78 @@ footer h3{
 footer p{
   margin:4px 0;
 }
+
+/* 3D Effects */
+.hero {
+  perspective: 1200px;
+}
+
+.hero-left,
+.hero-img-wrap {
+  transform-style: preserve-3d;
+}
+
+.hero-img-wrap {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+.hero-img {
+  transition: transform 0.6s ease;
+}
+
+.hero-img-wrap:hover .hero-img {
+  transform: rotateY(-15deg) rotateX(8deg) scale(1.05);
+}
+
+@keyframes float3d {
+  0%,100% {
+    transform: translateY(0px) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotateY(5deg);
+  }
+}
+
+/* 3D Cards */
+.value-card,
+.skill-item,
+.edu-card,
+.achieve-card,
+.contact-row {
+  transform-style: preserve-3d;
+  transition: all .4s ease;
+}
+
+.value-card:hover,
+.skill-item:hover,
+.edu-card:hover,
+.achieve-card:hover,
+.contact-row:hover {
+  transform:
+    perspective(1000px)
+    rotateX(8deg)
+    rotateY(-8deg)
+    translateY(-10px)
+    scale(1.03);
+
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.2);
+}
+
+/* Glassmorphism */
+.value-card,
+.skill-item,
+.edu-card,
+.achieve-card,
+.contact-row {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(15px);
+}
+
+/* Gold Glow */
+.section-title::after {
+  box-shadow: 0 0 15px #d4a017;
+}
   
 </style>
 </head>
@@ -683,14 +780,25 @@ footer p{
 </footer>
 
 <script>
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-reveals.forEach(el => observer.observe(el));
+const hero = document.querySelector('.hero');
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+hero.addEventListener('mousemove', (e) => {
+  const x = (window.innerWidth / 2 - e.pageX) / 30;
+  const y = (window.innerHeight / 2 - e.pageY) / 30;
+
+  document.querySelector('.hero-left').style.transform =
+    `rotateY(${x}deg) rotateX(${-y}deg)`;
+
+  document.querySelector('.hero-img-wrap').style.transform =
+    `rotateY(${-x}deg) rotateX(${y}deg)`;
+});
+
+hero.addEventListener('mouseleave', () => {
+  document.querySelector('.hero-left').style.transform =
+    'rotateY(0deg) rotateX(0deg)';
+
+  document.querySelector('.hero-img-wrap').style.transform =
+    'rotateY(0deg) rotateX(0deg)';
 });
 </script>
 </body>
